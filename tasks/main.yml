@@ -1,2 +1,40 @@
 ---
-# tasks file for teachbase-ansible.yc_cli
+- name: YC CLI | Download
+  get_url:
+    url: https://storage.yandexcloud.net/yandexcloud-yc/install.sh
+    dest: /tmp/yc-cli-installer.sh
+    mode: 0755
+
+- name: YC CLI | Install
+  become: yes
+  shell: yc-cli-installer.sh
+  args:
+    executable: /bin/bash
+    chdir: /tmp/
+
+- name: YC CLI | Remove the installer
+  become: yes
+  file:
+    path: /tmp/yc-cli-installer.sh
+    state: absent
+
+- name: YC CLI | Create config dir
+  become: yes
+  become_user: "{{ yc_config_user }}"
+  file:
+    path: "/home/{{ yc_config_user }}/.config/yandex-cloud/"
+    state: directory
+    owner: "{{ yc_config_user }}"
+    group: "{{ yc_config_user }}"
+    mode: 0755
+    recurse: yes
+
+- name: YC CLI | Copy config
+  become: yes
+  become_user: "{{ yc_config_user }}"
+  template:
+    src: yc_config.j2
+    dest: "/home/{{ yc_config_user }}/.config/yandex-cloud/config.yaml"
+    owner: "{{ yc_config_user }}"
+    group: "{{ yc_config_user }}"
+    mode: 0600
