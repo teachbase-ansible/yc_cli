@@ -1,2 +1,5 @@
 ---
-# defaults file for teachbase-ansible.yc_cli
+yc_token: AAABBBCCCDDDEEEFFF
+yc_cloud_id: aaabbbcccdddeeefff
+yc_folder_id: aaabbbcccdddeeefff
+yc_compute_default_zone: ru-central1-b
