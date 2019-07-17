@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Andrey Paderin
+  description: Ansible role for Yandex.Cloud command-line interface (CLI)
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
