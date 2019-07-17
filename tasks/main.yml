@@ -7,9 +7,8 @@
 
 - name: YC CLI | Install
   become: yes
-  shell: yc-cli-installer.sh
+  command: yc-cli-installer.sh
   args:
-    executable: /bin/bash
     chdir: /tmp/
 
 - name: YC CLI | Remove the installer
